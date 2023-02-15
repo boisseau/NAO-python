@@ -1,8 +1,18 @@
+import random
 import qi
 
 session = qi.Session()
 session.connect("192.168.0.158")
 tts = session.service('ALTextToSpeech')
 
-for patate in range(1,11):
-    tts.say(str(patate))
+pas_fini = True
+a_deviner=random.randint(1,999)
+while pas_fini:
+    nombre = int(input('Devine le nombre : '))
+    if nombre < a_deviner:
+        tts.say('plus')
+    elif nombre > a_deviner  :
+        tts.say('moins')
+    else:
+        pas_fini = False
+        tts.say("c'est bon")
